@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@admin.com',
                 'password' => \Hash::make('admin'),
             ]);
-        $team = Team::factory()->createOne(['user_id'=>$user->first()->id]);
+        Team::factory()->createOne(['user_id'=>$user->first()->id]);
         $this->call(PermissionsSeeder::class);
 
         $this->call(CategorySeeder::class);
