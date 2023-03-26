@@ -16,6 +16,44 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+
+                <x-nav-dropdown title="Apps" align="right" width="48">
+                        @can('view-any', App\Models\Category::class)
+                        <x-dropdown-link href="{{ route('categories.index') }}">
+                        Categories
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\Company::class)
+                        <x-dropdown-link href="{{ route('companies.index') }}">
+                        Companies
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\Contact::class)
+                        <x-dropdown-link href="{{ route('contacts.index') }}">
+                        Contacts
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\Manufacturer::class)
+                        <x-dropdown-link href="{{ route('manufacturers.index') }}">
+                        Manufacturers
+                        </x-dropdown-link>
+                        @endcan
+                </x-nav-dropdown>
+
+                    @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
+                        Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
+                    <x-nav-dropdown title="Access Management" align="right" width="48">
+
+                        @can('view-any', Spatie\Permission\Models\Role::class)
+                        <x-dropdown-link href="{{ route('roles.index') }}">Roles</x-dropdown-link>
+                        @endcan
+
+                        @can('view-any', Spatie\Permission\Models\Permission::class)
+                        <x-dropdown-link href="{{ route('permissions.index') }}">Permissions</x-dropdown-link>
+                        @endcan
+
+                    </x-nav-dropdown>
+                    @endif
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
