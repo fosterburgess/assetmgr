@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
@@ -37,7 +39,8 @@ Route::prefix('/')
         Route::resource('permissions', PermissionController::class);
 
         Route::resource('categories', CategoryController::class);
-        Route::resource('companies', CompanyController::class);
+        Route::resource('locations', LocationController::class);
         Route::resource('contacts', ContactController::class);
         Route::resource('manufacturers', ManufacturerController::class);
+        Route::resource('all-equipment', EquipmentController::class);
     });
