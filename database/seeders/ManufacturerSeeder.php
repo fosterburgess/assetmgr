@@ -12,8 +12,19 @@ class ManufacturerSeeder extends Seeder
      */
     public function run(): void
     {
-        Manufacturer::factory()
-            ->count(5)
-            ->create();
+        $data = $this->data();
+        foreach($data as $item) {
+            $m = Manufacturer::create($item);
+            $m->save();
+        }
+    }
+
+    public function data()
+    {
+        return [
+            ['name'=>'Canon','email'=>'','phone'=>'','url1'=>'https://us.medical.canon','url2'=>'','description'=>''],
+            ['name'=>'Stryker','email'=>'','phone'=>'','url1'=>'https://www.stryker.com/us','url2'=>'','description'=>''],
+            ['name'=>'US Opthomalic','email'=>'','phone'=>'','url1'=>'https://usophthalmic.com','url2'=>'','description'=>''],
+        ];
     }
 }
