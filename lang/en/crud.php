@@ -35,12 +35,12 @@ return [
     ],
 
     'companies' => [
-        'name' => 'Companies',
-        'index_title' => 'Companies List',
-        'new_title' => 'New Company',
-        'create_title' => 'Create Company',
-        'edit_title' => 'Edit Company',
-        'show_title' => 'Show Company',
+        'name' => 'Locations',
+        'index_title' => 'My Locations',
+        'new_title' => 'New Location',
+        'create_title' => 'Create Location',
+        'edit_title' => 'Edit Location',
+        'show_title' => 'Show Location',
         'inputs' => [
             'name' => 'Name',
             'logo' => 'Logo',
@@ -115,9 +115,9 @@ return [
         ],
     ],
 
-    'all_equipment' => [
-        'name' => 'All Equipment',
-        'index_title' => 'AllEquipment List',
+    'equipment' => [
+        'name' => 'My Equipment',
+        'index_title' => 'My Equipment List',
         'new_title' => 'New Equipment',
         'create_title' => 'Create Equipment',
         'edit_title' => 'Edit Equipment',
@@ -125,6 +125,8 @@ return [
         'inputs' => [
             'name' => 'Name',
             'serial_number' => 'Serial Number',
+            'location' => 'Location',
+            'manufacturer' => 'Manufacturer',
             'purchase_date' => 'Purchase Date',
             'metadata' => 'Metadata',
             'notes' => 'Notes',

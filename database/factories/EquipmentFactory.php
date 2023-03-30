@@ -24,11 +24,12 @@ class EquipmentFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'serial_number' => $this->faker->text(255),
+            'serial_number' => $this->faker->text(24),
             'purchase_date' => $this->faker->date,
             'metadata' => [],
             'notes' => $this->faker->text,
             'location_id' => \App\Models\Location::factory(),
+            'manufacturer_id' => \App\Models\Manufacturer::all()->random()->id,
         ];
     }
 }

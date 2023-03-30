@@ -31,7 +31,7 @@ class LocationAllEquipmentTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_location_all_equipment(): void
+    public function it_gets_location_equipment(): void
     {
         $location = Location::factory()->create();
         $allEquipment = Equipment::factory()
@@ -41,7 +41,7 @@ class LocationAllEquipmentTest extends TestCase
             ]);
 
         $response = $this->getJson(
-            route('api.locations.all-equipment.index', $location)
+            route('api.locations.equipment.index', $location)
         );
 
         $response->assertOk()->assertSee($allEquipment[0]->name);
@@ -50,7 +50,7 @@ class LocationAllEquipmentTest extends TestCase
     /**
      * @test
      */
-    public function it_stores_the_location_all_equipment(): void
+    public function it_stores_the_location_equipment(): void
     {
         $location = Location::factory()->create();
         $data = Equipment::factory()
@@ -60,7 +60,7 @@ class LocationAllEquipmentTest extends TestCase
             ->toArray();
 
         $response = $this->postJson(
-            route('api.locations.all-equipment.store', $location),
+            route('api.locations.equipment.store', $location),
             $data
         );
 

@@ -13,12 +13,32 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
+        <x-inputs.select
+            name="manufacturer_id"
+            label="Manufacturer"
+            :value="old('manufacturer_id', ($editing ? $equipment?->manufacturer_id : ''))"
+            placeholder="Manufacturer"
+        >
+            <option value="">---</option>
+            @foreach($manufacturers as $item)
+                <option
+                    @if(isset($equipment) && $item->id===$equipment?->manufacturer_id)
+                        selected="selected"
+                    @endif
+                    value="{{$item->id}}">{{$item->name}}</option>
+            @endforeach
+
+        </x-inputs.select>
+    </x-inputs.group>
+
+    <x-inputs.group class="w-full">
         <x-inputs.text
             name="serial_number"
-            label="Serial Number"
-            :value="old('serial_number', ($editing ? $equipment->serial_number : ''))"
+            label="Serial number"
+            :value="old('name', ($editing ? $equipment->serial_number : ''))"
             maxlength="255"
-            placeholder="Serial Number"
+            placeholder="Serial number"
+            required
         ></x-inputs.text>
     </x-inputs.group>
 
@@ -39,12 +59,20 @@
     </x-inputs.group>
 
     <x-inputs.group class="w-full">
-        <x-inputs.select name="company_id" label="At Location" required>
-            @php $selected = old('company_id', ($editing ? $equipment->company_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the location</option>
-            @foreach($companies as $value => $label)
-            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
+        <x-inputs.select
+            name="location_id"
+            label="Location"
+            :value="old('location_id', ($editing ? $equipment?->location_id : ''))"
+            placeholder="location"
+        >
+            @foreach($locations as $item)
+                <option
+                    @if(isset($location) && $item->id===$equipment?->location_id)
+                        selected="selected"
+                    @endif
+                    value="{{$item->id}}">{{$item->name}}</option>
             @endforeach
+
         </x-inputs.select>
     </x-inputs.group>
 </div>

@@ -44,17 +44,17 @@ class EquipmentControllerTest extends TestCase
     /**
      * @test
      */
-    public function it_displays_index_view_with_all_equipment(): void
+    public function it_displays_index_view_with_equipment(): void
     {
         $allEquipment = Equipment::factory()
             ->count(5)
             ->create();
 
-        $response = $this->get(route('all-equipment.index'));
+        $response = $this->get(route('equipment.index'));
 
         $response
             ->assertOk()
-            ->assertViewIs('app.all_equipment.index')
+            ->assertViewIs('app.equipment.index')
             ->assertViewHas('allEquipment');
     }
 
@@ -63,9 +63,9 @@ class EquipmentControllerTest extends TestCase
      */
     public function it_displays_create_view_for_equipment(): void
     {
-        $response = $this->get(route('all-equipment.create'));
+        $response = $this->get(route('equipment.create'));
 
-        $response->assertOk()->assertViewIs('app.all_equipment.create');
+        $response->assertOk()->assertViewIs('app.equipment.create');
     }
 
     /**
@@ -79,7 +79,7 @@ class EquipmentControllerTest extends TestCase
 
         $data['metadata'] = json_encode($data['metadata']);
 
-        $response = $this->post(route('all-equipment.store'), $data);
+        $response = $this->post(route('equipment.store'), $data);
 
         unset($data['location_id']);
 
@@ -89,7 +89,7 @@ class EquipmentControllerTest extends TestCase
 
         $equipment = Equipment::latest('id')->first();
 
-        $response->assertRedirect(route('all-equipment.edit', $equipment));
+        $response->assertRedirect(route('equipment.edit', $equipment));
     }
 
     /**
@@ -99,11 +99,11 @@ class EquipmentControllerTest extends TestCase
     {
         $equipment = Equipment::factory()->create();
 
-        $response = $this->get(route('all-equipment.show', $equipment));
+        $response = $this->get(route('equipment.show', $equipment));
 
         $response
             ->assertOk()
-            ->assertViewIs('app.all_equipment.show')
+            ->assertViewIs('app.equipment.show')
             ->assertViewHas('equipment');
     }
 
@@ -114,11 +114,11 @@ class EquipmentControllerTest extends TestCase
     {
         $equipment = Equipment::factory()->create();
 
-        $response = $this->get(route('all-equipment.edit', $equipment));
+        $response = $this->get(route('equipment.edit', $equipment));
 
         $response
             ->assertOk()
-            ->assertViewIs('app.all_equipment.edit')
+            ->assertViewIs('app.equipment.edit')
             ->assertViewHas('equipment');
     }
 
@@ -143,7 +143,7 @@ class EquipmentControllerTest extends TestCase
         $data['metadata'] = json_encode($data['metadata']);
 
         $response = $this->put(
-            route('all-equipment.update', $equipment),
+            route('equipment.update', $equipment),
             $data
         );
 
@@ -155,7 +155,7 @@ class EquipmentControllerTest extends TestCase
 
         $this->assertDatabaseHas('equipment', $data);
 
-        $response->assertRedirect(route('all-equipment.edit', $equipment));
+        $response->assertRedirect(route('equipment.edit', $equipment));
     }
 
     /**
@@ -165,9 +165,9 @@ class EquipmentControllerTest extends TestCase
     {
         $equipment = Equipment::factory()->create();
 
-        $response = $this->delete(route('all-equipment.destroy', $equipment));
+        $response = $this->delete(route('equipment.destroy', $equipment));
 
-        $response->assertRedirect(route('all-equipment.index'));
+        $response->assertRedirect(route('equipment.index'));
 
         $this->assertSoftDeleted($equipment);
     }

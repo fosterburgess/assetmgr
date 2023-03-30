@@ -32,13 +32,13 @@ class EquipmentTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_all_equipment_list(): void
+    public function it_gets_equipment_list(): void
     {
         $allEquipment = Equipment::factory()
             ->count(5)
             ->create();
 
-        $response = $this->getJson(route('api.all-equipment.index'));
+        $response = $this->getJson(route('api.equipment.index'));
 
         $response->assertOk()->assertSee($allEquipment[0]->name);
     }
@@ -52,7 +52,7 @@ class EquipmentTest extends TestCase
             ->make()
             ->toArray();
 
-        $response = $this->postJson(route('api.all-equipment.store'), $data);
+        $response = $this->postJson(route('api.equipment.store'), $data);
 
         unset($data['location_id']);
 
@@ -80,7 +80,7 @@ class EquipmentTest extends TestCase
         ];
 
         $response = $this->putJson(
-            route('api.all-equipment.update', $equipment),
+            route('api.equipment.update', $equipment),
             $data
         );
 
@@ -101,7 +101,7 @@ class EquipmentTest extends TestCase
         $equipment = Equipment::factory()->create();
 
         $response = $this->deleteJson(
-            route('api.all-equipment.destroy', $equipment)
+            route('api.equipment.destroy', $equipment)
         );
 
         $this->assertSoftDeleted($equipment);

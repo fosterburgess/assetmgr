@@ -17,7 +17,7 @@
                     <p>Manage your equipment</p>
                     <div class="card-actions justify-end">
                         <x-nav-link
-                            href="{{ route('all-equipment.index') }}"
+                            href="{{ route('equipment.index') }}"
                         >
                             Manage
                         </x-nav-link>

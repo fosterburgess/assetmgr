@@ -17,11 +17,13 @@ class LocationController extends Controller
      */
     public function index(Request $request): View
     {
+        $user = $request->user();
         $this->authorize('view-any', Location::class);
 
         $search = $request->get('search', '');
 
         $locations = Location::search($search)
+            ->where('owner_id', $user->id)
             ->latest()
             ->paginate(5)
             ->withQueryString();
@@ -44,9 +46,11 @@ class LocationController extends Controller
      */
     public function store(LocationStoreRequest $request): RedirectResponse
     {
+        $user = $request->user();
         $this->authorize('create', Location::class);
 
         $validated = $request->validated();
+        $validated['owner_id'] = $user->id;
         if ($request->hasFile('logo')) {
             $validated['logo'] = $request->file('logo')->store('public');
         }
@@ -85,9 +89,11 @@ class LocationController extends Controller
         LocationUpdateRequest $request,
         Location $location
     ): RedirectResponse {
+        $user = $request->user();
         $this->authorize('update', $location);
 
         $validated = $request->validated();
+        $validated['owner_id'] = $user->id;
         if ($request->hasFile('logo')) {
             if ($location->logo) {
                 Storage::delete($location->logo);

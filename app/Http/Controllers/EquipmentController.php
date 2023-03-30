@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Equipment;
+use App\Models\Location;
+use App\Models\Manufacturer;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -26,7 +28,7 @@ class EquipmentController extends Controller
             ->withQueryString();
 
         return view(
-            'app.all_equipment.index',
+            'app.equipment.index',
             compact('allEquipment', 'search')
         );
     }
@@ -36,9 +38,12 @@ class EquipmentController extends Controller
      */
     public function create(Request $request): View
     {
+        $user = $request->user();
         $this->authorize('create', Equipment::class);
+        $manufacturers = Manufacturer::all();
+        $locations = Location::where('owner_id', $user->id)->get();
 
-        return view('app.all_equipment.create');
+        return view('app.equipment.create', compact('locations', 'manufacturers'));
     }
 
     /**
@@ -49,12 +54,12 @@ class EquipmentController extends Controller
         $this->authorize('create', Equipment::class);
 
         $validated = $request->validated();
-        $validated['metadata'] = json_decode($validated['metadata'], true);
+        $validated['metadata'] = json_decode($validated['metadata'] ?? '', true);
 
         $equipment = Equipment::create($validated);
 
         return redirect()
-            ->route('all-equipment.edit', $equipment)
+            ->route('equipment.edit', $equipment)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -65,7 +70,7 @@ class EquipmentController extends Controller
     {
         $this->authorize('view', $equipment);
 
-        return view('app.all_equipment.show', compact('equipment'));
+        return view('app.equipment.show', compact('equipment'));
     }
 
     /**
@@ -73,9 +78,13 @@ class EquipmentController extends Controller
      */
     public function edit(Request $request, Equipment $equipment): View
     {
+        $user = $request->user();
         $this->authorize('update', $equipment);
 
-        return view('app.all_equipment.edit', compact('equipment'));
+        $manufacturers = Manufacturer::all();
+        $locations = Location::where('owner_id', $user->id)->get();
+
+        return view('app.equipment.edit', compact('locations', 'manufacturers', 'equipment'));
     }
 
     /**
@@ -88,12 +97,12 @@ class EquipmentController extends Controller
         $this->authorize('update', $equipment);
 
         $validated = $request->validated();
-        $validated['metadata'] = json_decode($validated['metadata'], true);
+        $validated['metadata'] = json_decode($validated['metadata'] ?? '', true);
 
         $equipment->update($validated);
 
         return redirect()
-            ->route('all-equipment.edit', $equipment)
+            ->route('equipment.edit', $equipment)
             ->withSuccess(__('crud.common.saved'));
     }
 
@@ -109,7 +118,7 @@ class EquipmentController extends Controller
         $equipment->delete();
 
         return redirect()
-            ->route('all-equipment.index')
+            ->route('equipment.index')
             ->withSuccess(__('crud.common.removed'));
     }
 }

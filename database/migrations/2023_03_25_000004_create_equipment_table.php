@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->json('metadata')->nullable();
             $table->longText('notes')->nullable();
             $table->unsignedBigInteger('location_id');
+            $table->unsignedBigInteger('manufacturer_id')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

@@ -53,13 +53,13 @@
                                     @lang('crud.equipment.inputs.name')
                                 </th>
                                 <th class="px-4 py-3 text-left">
+                                    @lang('crud.equipment.inputs.manufacturer')
+                                </th>
+                                <th class="px-4 py-3 text-left">
                                     @lang('crud.equipment.inputs.serial_number')
                                 </th>
                                 <th class="px-4 py-3 text-left">
                                     @lang('crud.equipment.inputs.purchase_date')
-                                </th>
-                                <th class="px-4 py-3 text-left">
-                                    @lang('crud.equipment.inputs.company_id')
                                 </th>
                                 <th></th>
                             </tr>
@@ -71,14 +71,13 @@
                                     {{ $equipment->name ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
+                                    {{ $equipment->manufacturer?->name ?? '-' }}
+                                </td>
+                                <td class="px-4 py-3 text-left">
                                     {{ $equipment->serial_number ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
-                                    {{ $equipment->purchase_date ?? '-' }}
-                                </td>
-                                <td class="px-4 py-3 text-left">
-                                    {{ optional($equipment->company)->name ??
-                                    '-' }}
+                                    {{ $equipment->purchase_date?->format('m/d/Y') ?? '-' }}
                                 </td>
                                 <td
                                     class="px-4 py-3 text-center"
@@ -145,7 +144,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="5">
+                                <td colspan="4">
                                     @lang('crud.common.no_items_found')
                                 </td>
                             </tr>
@@ -153,7 +152,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="5">
+                                <td colspan="4">
                                     <div class="mt-10 px-4">
                                         {!! $allEquipment->render() !!}
                                     </div>

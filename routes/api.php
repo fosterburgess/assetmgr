@@ -48,14 +48,14 @@ Route::name('api.')
         Route::apiResource('companies', LocationController::class);
 
         // Location All Equipment
-        Route::get('/locations/{location}/all-equipment', [
+        Route::get('/locations/{location}/equipment', [
             LocationAllEquipmentController::class,
             'index',
-        ])->name('locations.all-equipment.index');
-        Route::post('/locations/{location}/all-equipment', [
+        ])->name('locations.equipment.index');
+        Route::post('/locations/{location}/equipment', [
             LocationAllEquipmentController::class,
             'store',
-        ])->name('locations.all-equipment.store');
+        ])->name('locations.equipment.store');
 
         // Location Contacts
         Route::get('/locations/{location}/contacts', [
@@ -117,5 +117,5 @@ Route::name('api.')
             'destroy',
         ])->name('manufacturers.contacts.destroy');
 
-        Route::apiResource('all-equipment', EquipmentController::class);
+        Route::apiResource('equipment', EquipmentController::class);
     });

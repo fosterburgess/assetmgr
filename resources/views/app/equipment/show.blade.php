@@ -23,6 +23,12 @@
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
+                            @lang('crud.equipment.inputs.manufacturer')
+                        </h5>
+                        <span>{{ $equipment->manufacturer?->name ?? '-' }}</span>
+                    </div>
+                    <div class="mb-4">
+                        <h5 class="font-medium text-gray-700">
                             @lang('crud.equipment.inputs.serial_number')
                         </h5>
                         <span>{{ $equipment->serial_number ?? '-' }}</span>
@@ -38,15 +44,6 @@
                             @lang('crud.equipment.inputs.notes')
                         </h5>
                         <span>{{ $equipment->notes ?? '-' }}</span>
-                    </div>
-                    <div class="mb-4">
-                        <h5 class="font-medium text-gray-700">
-                            @lang('crud.equipment.inputs.company_id')
-                        </h5>
-                        <span
-                            >{{ optional($equipment->company)->name ?? '-'
-                            }}</span
-                        >
                     </div>
                 </div>
 

@@ -25,6 +25,8 @@ class EquipmentStoreRequest extends FormRequest
             'purchase_date' => ['nullable', 'date'],
             'metadata' => ['nullable', 'max:255', 'json'],
             'notes' => ['nullable', 'max:255', 'string'],
+            'manufacturer_id' => ['nullable'],
+            'location_id' => [],
         ];
     }
 }

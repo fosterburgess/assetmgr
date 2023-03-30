@@ -42,5 +42,5 @@ Route::prefix('/')
         Route::resource('locations', LocationController::class);
         Route::resource('contacts', ContactController::class);
         Route::resource('manufacturers', ManufacturerController::class);
-        Route::resource('all-equipment', EquipmentController::class);
+        Route::resource('equipment', EquipmentController::class);
     });

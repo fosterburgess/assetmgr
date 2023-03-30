@@ -23,10 +23,10 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
-            'team_id' => $this->faker->randomNumber,
-            'name' => $this->faker->name(),
-            'logo' => $this->faker->word,
-            'address1' => $this->faker->address,
+//            'team_id' => $this->faker->randomNumber,
+            'name' => $this->faker->company,
+            'logo' => '',
+            'address1' => $this->faker->streetAddress,
             'address2' => $this->faker->address,
             'city' => $this->faker->city,
             'state' => $this->faker->state,
@@ -34,7 +34,7 @@ class LocationFactory extends Factory
             'country' => $this->faker->country,
             'notes' => $this->faker->text,
             'url1' => $this->faker->url,
-            'url2' => $this->faker->text(255),
+            'url2' => $this->faker->url,
             'url3' => $this->faker->url,
             'email' => $this->faker->email,
             'phone' => $this->faker->phoneNumber,

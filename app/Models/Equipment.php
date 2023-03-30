@@ -20,6 +20,7 @@ class Equipment extends Model
         'metadata',
         'notes',
         'location_id',
+        'manufacturer_id',
     ];
 
     protected $searchableFields = ['*'];
@@ -32,5 +33,9 @@ class Equipment extends Model
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+      public function manufacturer()
+    {
+        return $this->belongsTo(Manufacturer::class);
     }
 }

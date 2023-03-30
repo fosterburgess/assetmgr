@@ -39,24 +39,24 @@
                         </x-dropdown-link>
                         @endcan
                         @can('view-any', App\Models\Equipment::class)
-                        <x-dropdown-link href="{{ route('all-equipment.index') }}">
+                        <x-dropdown-link href="{{ route('equipment.index') }}">
                         All Equipment
                         </x-dropdown-link>
                         @endcan
                 </x-nav-dropdown>
 
-                    @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
+                    @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
                         Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
                     <x-nav-dropdown title="Access Management" align="right" width="48">
-                        
+
                         @can('view-any', Spatie\Permission\Models\Role::class)
                         <x-dropdown-link href="{{ route('roles.index') }}">Roles</x-dropdown-link>
                         @endcan
-                    
+
                         @can('view-any', Spatie\Permission\Models\Permission::class)
                         <x-dropdown-link href="{{ route('permissions.index') }}">Permissions</x-dropdown-link>
                         @endcan
-                        
+
                     </x-nav-dropdown>
                     @endif
             </div>
@@ -184,7 +184,7 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
-            
+
                 @can('view-any', App\Models\Category::class)
                 <x-jet-responsive-nav-link href="{{ route('categories.index') }}">
                 Categories
@@ -206,22 +206,22 @@
                 </x-jet-responsive-nav-link>
                 @endcan
                 @can('view-any', App\Models\Equipment::class)
-                <x-jet-responsive-nav-link href="{{ route('all-equipment.index') }}">
+                <x-jet-responsive-nav-link href="{{ route('equipment.index') }}">
                 All Equipment
                 </x-jet-responsive-nav-link>
                 @endcan
 
-                @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
+                @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
                     Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
-                    
+
                     @can('view-any', Spatie\Permission\Models\Role::class)
                     <x-jet-responsive-nav-link href="{{ route('roles.index') }}">Roles</x-jet-responsive-nav-link>
                     @endcan
-                
+
                     @can('view-any', Spatie\Permission\Models\Permission::class)
                     <x-jet-responsive-nav-link href="{{ route('permissions.index') }}">Permissions</x-jet-responsive-nav-link>
                     @endcan
-                    
+
                 @endif
         </div>
 
