@@ -21,12 +21,6 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'update categories']);
         Permission::create(['name' => 'delete categories']);
 
-        Permission::create(['name' => 'list companies']);
-        Permission::create(['name' => 'view companies']);
-        Permission::create(['name' => 'create companies']);
-        Permission::create(['name' => 'update companies']);
-        Permission::create(['name' => 'delete companies']);
-
         Permission::create(['name' => 'list contacts']);
         Permission::create(['name' => 'view contacts']);
         Permission::create(['name' => 'create contacts']);
@@ -38,6 +32,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'create allequipment']);
         Permission::create(['name' => 'update allequipment']);
         Permission::create(['name' => 'delete allequipment']);
+
+        Permission::create(['name' => 'list locations']);
+        Permission::create(['name' => 'view locations']);
+        Permission::create(['name' => 'create locations']);
+        Permission::create(['name' => 'update locations']);
+        Permission::create(['name' => 'delete locations']);
 
         Permission::create(['name' => 'list manufacturers']);
         Permission::create(['name' => 'view manufacturers']);

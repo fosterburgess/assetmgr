@@ -17,11 +17,13 @@ class CompanyController extends Controller
      */
     public function index(Request $request): View
     {
+        $user = $request->user();
         $this->authorize('view-any', Company::class);
 
         $search = $request->get('search', '');
 
         $companies = Company::search($search)
+            ->where('owner_id', $user->id)
             ->latest()
             ->paginate(5)
             ->withQueryString();

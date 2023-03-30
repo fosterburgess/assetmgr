@@ -23,8 +23,8 @@
                         Categories
                         </x-dropdown-link>
                         @endcan
-                        @can('view-any', App\Models\Company::class)
-                        <x-dropdown-link href="{{ route('companies.index') }}">
+                        @can('view-any', App\Models\Location::class)
+                        <x-dropdown-link href="{{ route('locations.index') }}">
                         Companies
                         </x-dropdown-link>
                         @endcan
@@ -36,6 +36,11 @@
                         @can('view-any', App\Models\Manufacturer::class)
                         <x-dropdown-link href="{{ route('manufacturers.index') }}">
                         Manufacturers
+                        </x-dropdown-link>
+                        @endcan
+                        @can('view-any', App\Models\Equipment::class)
+                        <x-dropdown-link href="{{ route('all-equipment.index') }}">
+                        All Equipment
                         </x-dropdown-link>
                         @endcan
                 </x-nav-dropdown>
@@ -185,8 +190,8 @@
                 Categories
                 </x-jet-responsive-nav-link>
                 @endcan
-                @can('view-any', App\Models\Company::class)
-                <x-jet-responsive-nav-link href="{{ route('companies.index') }}">
+                @can('view-any', App\Models\Location::class)
+                <x-jet-responsive-nav-link href="{{ route('locations.index') }}">
                 Companies
                 </x-jet-responsive-nav-link>
                 @endcan
@@ -198,6 +203,11 @@
                 @can('view-any', App\Models\Manufacturer::class)
                 <x-jet-responsive-nav-link href="{{ route('manufacturers.index') }}">
                 Manufacturers
+                </x-jet-responsive-nav-link>
+                @endcan
+                @can('view-any', App\Models\Equipment::class)
+                <x-jet-responsive-nav-link href="{{ route('all-equipment.index') }}">
+                All Equipment
                 </x-jet-responsive-nav-link>
                 @endcan
 

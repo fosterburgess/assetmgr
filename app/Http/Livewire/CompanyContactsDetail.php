@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Company;
 use App\Models\Contact;
+use App\Models\Location;
 use Illuminate\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -12,7 +12,7 @@ class CompanyContactsDetail extends Component
 {
     use AuthorizesRequests;
 
-    public Company $company;
+    public Location $location;
     public Contact $contact;
     public $contactsForSelect = [];
     public $contact_id = null;
@@ -24,9 +24,9 @@ class CompanyContactsDetail extends Component
         'contact_id' => ['required', 'exists:contacts,id'],
     ];
 
-    public function mount(Company $company): void
+    public function mount(Location $location): void
     {
-        $this->company = $company;
+        $this->location = $location;
         $this->contactsForSelect = Contact::pluck('name', 'id');
         $this->resetContactData();
     }
@@ -65,7 +65,7 @@ class CompanyContactsDetail extends Component
 
         $this->authorize('create', Contact::class);
 
-        $this->company->contacts()->attach($this->contact_id, []);
+        $this->location->contacts()->attach($this->contact_id, []);
 
         $this->hideModal();
     }
@@ -74,7 +74,7 @@ class CompanyContactsDetail extends Component
     {
         $this->authorize('delete-any', Contact::class);
 
-        $this->company->contacts()->detach($contact);
+        $this->location->contacts()->detach($contact);
 
         $this->resetContactData();
     }
@@ -82,7 +82,7 @@ class CompanyContactsDetail extends Component
     public function render(): View
     {
         return view('livewire.company-contacts-detail', [
-            'companyContacts' => $this->company
+            'companyContacts' => $this->location
                 ->contacts()
                 ->withPivot([])
                 ->paginate(20),

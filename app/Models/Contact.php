@@ -25,13 +25,18 @@ class Contact extends Model
 
     protected $searchableFields = ['*'];
 
-    public function companies()
-    {
-        return $this->belongsToMany(Company::class);
-    }
-
     public function manufacturers()
     {
         return $this->belongsToMany(Manufacturer::class);
+    }
+
+    public function locations()
+    {
+        return $this->belongsToMany(
+            Location::class,
+            'company_contact',
+            'contact_id',
+            'company_id'
+        );
     }
 }

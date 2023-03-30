@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->date('purchase_date')->nullable();
             $table->json('metadata')->nullable();
             $table->longText('notes')->nullable();
+            $table->unsignedBigInteger('location_id');
 
             $table->timestamps();
             $table->softDeletes();

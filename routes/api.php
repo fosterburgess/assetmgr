@@ -4,14 +4,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoleController;
-use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\LocationController;
+use App\Http\Controllers\Api\EquipmentController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ManufacturerController;
-use App\Http\Controllers\Api\CompanyContactsController;
 use App\Http\Controllers\Api\company_contactController;
-use App\Http\Controllers\Api\ContactCompaniesController;
+use App\Http\Controllers\Api\LocationContactsController;
+use App\Http\Controllers\Api\ContactLocationsController;
+use App\Http\Controllers\Api\LocationAllEquipmentController;
 use App\Http\Controllers\Api\ContactManufacturersController;
 use App\Http\Controllers\Api\ManufacturerContactsController;
 use App\Http\Controllers\Api\contact_manufacturerController;
@@ -43,37 +45,33 @@ Route::name('api.')
 
         Route::apiResource('categories', CategoryController::class);
 
-        Route::apiResource('companies', CompanyController::class);
+        Route::apiResource('companies', LocationController::class);
 
-        // Company Contacts
-        Route::get('/companies/{company}/contacts', [
-            CompanyContactsController::class,
+        // Location All Equipment
+        Route::get('/locations/{location}/all-equipment', [
+            LocationAllEquipmentController::class,
             'index',
-        ])->name('companies.contacts.index');
-        Route::post('/companies/{company}/contacts/{contact}', [
-            CompanyContactsController::class,
+        ])->name('locations.all-equipment.index');
+        Route::post('/locations/{location}/all-equipment', [
+            LocationAllEquipmentController::class,
             'store',
-        ])->name('companies.contacts.store');
-        Route::delete('/companies/{company}/contacts/{contact}', [
-            CompanyContactsController::class,
+        ])->name('locations.all-equipment.store');
+
+        // Location Contacts
+        Route::get('/locations/{location}/contacts', [
+            LocationContactsController::class,
+            'index',
+        ])->name('locations.contacts.index');
+        Route::post('/locations/{location}/contacts/{contact}', [
+            LocationContactsController::class,
+            'store',
+        ])->name('locations.contacts.store');
+        Route::delete('/locations/{location}/contacts/{contact}', [
+            LocationContactsController::class,
             'destroy',
-        ])->name('companies.contacts.destroy');
+        ])->name('locations.contacts.destroy');
 
         Route::apiResource('contacts', ContactController::class);
-
-        // Contact Companies
-        Route::get('/contacts/{contact}/companies', [
-            ContactCompaniesController::class,
-            'index',
-        ])->name('contacts.companies.index');
-        Route::post('/contacts/{contact}/companies/{company}', [
-            ContactCompaniesController::class,
-            'store',
-        ])->name('contacts.companies.store');
-        Route::delete('/contacts/{contact}/companies/{company}', [
-            ContactCompaniesController::class,
-            'destroy',
-        ])->name('contacts.companies.destroy');
 
         // Contact Manufacturers
         Route::get('/contacts/{contact}/manufacturers', [
@@ -88,6 +86,20 @@ Route::name('api.')
             ContactManufacturersController::class,
             'destroy',
         ])->name('contacts.manufacturers.destroy');
+
+        // Contact Locations
+        Route::get('/contacts/{contact}/locations', [
+            ContactLocationsController::class,
+            'index',
+        ])->name('contacts.locations.index');
+        Route::post('/contacts/{contact}/locations/{location}', [
+            ContactLocationsController::class,
+            'store',
+        ])->name('contacts.locations.store');
+        Route::delete('/contacts/{contact}/locations/{location}', [
+            ContactLocationsController::class,
+            'destroy',
+        ])->name('contacts.locations.destroy');
 
         Route::apiResource('manufacturers', ManufacturerController::class);
 
@@ -104,4 +116,6 @@ Route::name('api.')
             ManufacturerContactsController::class,
             'destroy',
         ])->name('manufacturers.contacts.destroy');
+
+        Route::apiResource('all-equipment', EquipmentController::class);
     });

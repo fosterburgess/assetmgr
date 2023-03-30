@@ -49,9 +49,9 @@ return [
             'city' => 'City',
             'state' => 'State',
             'postal_code' => 'Postal Code',
-            'url1' => 'Url1',
+            'url1' => 'Website',
             'url2' => 'Instagram',
-            'url3' => 'Url3',
+            'url3' => 'Other web',
             'email' => 'Email',
             'phone' => 'Phone',
         ],
@@ -112,6 +112,22 @@ return [
         'show_title' => 'Show contact_manufacturer',
         'inputs' => [
             'contact_id' => 'Contact',
+        ],
+    ],
+
+    'all_equipment' => [
+        'name' => 'All Equipment',
+        'index_title' => 'AllEquipment List',
+        'new_title' => 'New Equipment',
+        'create_title' => 'Create Equipment',
+        'edit_title' => 'Edit Equipment',
+        'show_title' => 'Show Equipment',
+        'inputs' => [
+            'name' => 'Name',
+            'serial_number' => 'Serial Number',
+            'purchase_date' => 'Purchase Date',
+            'metadata' => 'Metadata',
+            'notes' => 'Notes',
         ],
     ],
 

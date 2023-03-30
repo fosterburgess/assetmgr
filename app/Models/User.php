@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Scopes\Searchable;
 use Spatie\Permission\Traits\HasRoles;
@@ -21,7 +20,6 @@ class User extends Authenticatable
     use Searchable;
     use HasApiTokens;
     use HasProfilePhoto;
-    use HasTeams;
     use TwoFactorAuthenticatable;
 
     protected $fillable = ['name', 'email', 'password'];
@@ -40,9 +38,9 @@ class User extends Authenticatable
         'two_factor_confirmed_at' => 'datetime',
     ];
 
-    public function companies()
+    public function locations()
     {
-        return $this->hasMany(Company::class, 'owner_id');
+        return $this->hasMany(Location::class, 'owner_id');
     }
 
     public function isSuperAdmin(): bool

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table
                 ->foreign('company_id')
                 ->references('id')
-                ->on('companies')
+                ->on('locations')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
 

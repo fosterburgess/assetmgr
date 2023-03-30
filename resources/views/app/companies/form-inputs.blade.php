@@ -101,10 +101,10 @@
     <x-inputs.group class="w-full">
         <x-inputs.text
             name="url1"
-            label="Url1"
+            label="Website"
             :value="old('url1', ($editing ? $company->url1 : ''))"
             maxlength="255"
-            placeholder="Url1"
+            placeholder="Web site URL"
         ></x-inputs.text>
     </x-inputs.group>
 
@@ -121,10 +121,10 @@
     <x-inputs.group class="w-full">
         <x-inputs.text
             name="url3"
-            label="Url3"
+            label="Other web"
             :value="old('url3', ($editing ? $company->url3 : ''))"
             maxlength="255"
-            placeholder="Url3"
+            placeholder="Other website"
         ></x-inputs.text>
     </x-inputs.group>
 

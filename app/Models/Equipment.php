@@ -19,6 +19,7 @@ class Equipment extends Model
         'purchase_date',
         'metadata',
         'notes',
+        'location_id',
     ];
 
     protected $searchableFields = ['*'];
@@ -27,4 +28,9 @@ class Equipment extends Model
         'purchase_date' => 'date',
         'metadata' => 'array',
     ];
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }

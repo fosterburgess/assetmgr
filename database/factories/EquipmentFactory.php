@@ -28,6 +28,7 @@ class EquipmentFactory extends Factory
             'purchase_date' => $this->faker->date,
             'metadata' => [],
             'notes' => $this->faker->text,
+            'location_id' => \App\Models\Location::factory(),
         ];
     }
 }
