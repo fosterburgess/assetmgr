@@ -21,15 +21,15 @@
                         </h5>
                         <span>{{ $location->name ?? '-' }}</span>
                     </div>
-                    <div class="mb-4">
-                        <h5 class="font-medium text-gray-700">
-                            @lang('crud.companies.inputs.logo')
-                        </h5>
-                        <x-partials.thumbnail
-                            src="{{ $location->logo ? \Storage::url($location->logo) : '' }}"
-                            size="150"
-                        />
-                    </div>
+{{--                    <div class="mb-4">--}}
+{{--                        <h5 class="font-medium text-gray-700">--}}
+{{--                            @lang('crud.companies.inputs.logo')--}}
+{{--                        </h5>--}}
+{{--                        <x-partials.thumbnail--}}
+{{--                            src="{{ $location->logo ? \Storage::url($location->logo) : '' }}"--}}
+{{--                            size="150"--}}
+{{--                        />--}}
+{{--                    </div>--}}
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.companies.inputs.address1')
