@@ -38,7 +38,6 @@
             :value="old('name', ($editing ? $equipment->serial_number : ''))"
             maxlength="255"
             placeholder="Serial number"
-            required
         ></x-inputs.text>
     </x-inputs.group>
 
