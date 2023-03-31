@@ -17,36 +17,27 @@
                     </x-jet-nav-link>
                 </div>
 
+                @if (Auth::user()->hasRole('super-admin'))
                 <x-nav-dropdown title="Apps" align="right" width="48">
-                        @can('view-any', App\Models\Category::class)
-                        <x-dropdown-link href="{{ route('categories.index') }}">
+                    <x-dropdown-link href="{{ route('categories.index') }}">
                         Categories
                         </x-dropdown-link>
-                        @endcan
-                        @can('view-any', App\Models\Location::class)
                         <x-dropdown-link href="{{ route('locations.index') }}">
                         Companies
                         </x-dropdown-link>
-                        @endcan
-                        @can('view-any', App\Models\Contact::class)
                         <x-dropdown-link href="{{ route('contacts.index') }}">
                         Contacts
                         </x-dropdown-link>
-                        @endcan
-                        @can('view-any', App\Models\Manufacturer::class)
                         <x-dropdown-link href="{{ route('manufacturers.index') }}">
                         Manufacturers
                         </x-dropdown-link>
-                        @endcan
-                        @can('view-any', App\Models\Equipment::class)
                         <x-dropdown-link href="{{ route('equipment.index') }}">
                         All Equipment
                         </x-dropdown-link>
-                        @endcan
                 </x-nav-dropdown>
+                @endif
 
-                    @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) ||
-                        Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
+                    @if (Auth::user()->hasRole('super-admin'))
                     <x-nav-dropdown title="Access Management" align="right" width="48">
 
                         @can('view-any', Spatie\Permission\Models\Role::class)
