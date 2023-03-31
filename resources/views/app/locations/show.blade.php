@@ -107,7 +107,7 @@
                 </div>
             </x-partials.card>
 
-            @can('view-any', App\Models\company_contact::class)
+            @can('view-any', App\Models\Contact::class)
             <x-partials.card class="mt-5">
                 <x-slot name="title"> Contacts </x-slot>
 
