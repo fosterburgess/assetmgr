@@ -7,18 +7,165 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a
-                class="btn  btn-sm bg-blue-400 float-right"
-                href="{{ route('equipment.create') }}"
-            >
-                New
-            </a>
-        </div>
-    </div>
+            <x-partials.card>
+                <div class="mb-5 mt-4">
+                    <div class="flex flex-wrap justify-between">
+                        <div class="md:w-1/2">
+                            <form>
+                                <div class="flex items-center w-full">
+                                    <x-inputs.text
+                                        name="search"
+                                        value="{{ $search ?? '' }}"
+                                        placeholder="{{ __('crud.common.search') }}"
+                                        autocomplete="off"
+                                    ></x-inputs.text>
 
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <livewire:equipment-table />
-        </div>
-    </div>
+                                    <div class="ml-1">
+                                        <button
+                                            type="submit"
+                                            class="button button-primary"
+                                        >
+                                            <i class="icon ion-md-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="md:w-1/2 text-right">
+                            @can('create', App\Models\Equipment::class)
+                            <a
+                                href="{{ route('equipment.create') }}"
+                                class="button button-primary"
+                            >
+                                <i class="mr-1 icon ion-md-add"></i>
+                                @lang('crud.common.create')
+                            </a>
+                            @endcan
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block w-full overflow-auto scrolling-touch">
+                    <table class="w-full max-w-full mb-4 bg-transparent">
+                        <thead class="text-gray-700">
+                            <tr>
+                                <th class="px-4 py-3 text-left">
+                                    @lang('crud.equipment.inputs.name')
+                                </th>
+                                <th class="px-4 py-3 text-left">
+                                    @lang('crud.equipment.inputs.manufacturer')
+                                </th>
+                                <th class="px-4 py-3 text-left">
+                                    @lang('crud.equipment.inputs.serial_number')
+                                </th>
+                                <th class="px-4 py-3 text-left">
+                                    @lang('crud.equipment.inputs.purchase_date')
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600">
+                            @forelse($allEquipment as $equipment)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 text-left">
+                                    {{ $equipment->name ?? '-' }}
+                                </td>
+                                <td class="px-4 py-3 text-left">
+                                    {{ $equipment->manufacturer?->name ?? '-' }}
+                                </td>
+                                <td class="px-4 py-3 text-left">
+                                    {{ $equipment->serial_number ?? '-' }}
+                                </td>
+                                <td class="px-4 py-3 text-left">
+                                    {{ $equipment->purchase_date?->format('m/d/Y') ?? '-' }}
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-center"
+                                    style="width: 134px;"
+                                >
+                                    <div
+                                        role="group"
+                                        aria-label="Row Actions"
+                                        class="
+                                            relative
+                                            inline-flex
+                                            align-middle
+                                        "
+                                    >
+                                        @can('update', $equipment)
+                                        <a
+                                            href="{{ route('equipment.edit', $equipment) }}"
+                                            class="mr-1"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="button"
+                                            >
+                                                <i
+                                                    class="icon ion-md-create"
+                                                ></i>
+                                            </button>
+                                        </a>
+                                        @endcan @can('view', $equipment)
+                                        <a
+                                            href="{{ route('equipment.show', $equipment) }}"
+                                            class="mr-1"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="button"
+                                            >
+                                                <i class="icon ion-md-eye"></i>
+                                            </button>
+                                        </a>
+                                        @endcan @can('delete', $equipment)
+                                        <form
+                                            action="{{ route('equipment.destroy', $equipment) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
+                                        >
+                                            @csrf @method('DELETE')
+                                            <button
+                                                type="submit"
+                                                class="button"
+                                            >
+                                                <i
+                                                    class="
+                                                        icon
+                                                        ion-md-trash
+                                                        text-red-600
+                                                    "
+                                                ></i>
+                                            </button>
+                                        </form>
+                                        @endcan
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4">
+                                    @lang('crud.common.no_items_found')
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <div class="mt-10 px-4">
+                                        {!! $allEquipment->render() !!}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </x-partials.card>
+
+{{--    <div class="py-6">--}}
+{{--        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">--}}
+{{--            <livewire:equipmenttable />--}}
+{{--        </div>--}}
+{{--    </div>--}}
 </x-app-layout>
